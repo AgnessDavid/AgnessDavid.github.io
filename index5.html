@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animation de Marque - GSAP</title>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .brand-container {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #00f260, #0575e6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      font-weight: bold;
+      color: white;
+      transform: scale(0);
+    }
+
+    .brand-name {
+      margin-top: 30px;
+      font-size: 2.5rem;
+      letter-spacing: 4px;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="brand-container">
+    <div class="logo" id="logo">A</div>
+    <div class="brand-name" id="brand">AquaTech</div>
+  </div>
+
+  <script>
+    // Logo scale + rotation
+    gsap.to("#logo", {
+      duration: 1.2,
+      scale: 1,
+      rotation: 360,
+      ease: "power3.out"
+    });
+
+    // Nom de marque en fondu après le logo
+    gsap.to("#brand", {
+      duration: 1.2,
+      opacity: 1,
+      y: -10,
+      delay: 1,
+      ease: "power2.out"
+    });
+  </script>
+
+</body>
+</html>

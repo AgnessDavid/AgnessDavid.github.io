@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Défilement de Marque - GSAP</title>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .marquee-container {
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      border-top: 2px solid #00f260;
+      border-bottom: 2px solid #0575e6;
+      padding: 20px 0;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      font-size: 2rem;
+      font-weight: bold;
+      padding-left: 100%; /* commence hors de l’écran à gauche */
+    }
+
+    .marquee-item {
+      display: inline-block;
+      margin-right: 100px;
+      color: #00f260;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="marquee-container">
+    <div class="marquee-content" id="marquee">
+      <span class="marquee-item">⚡ AquaTech</span>
+      <span class="marquee-item">⚡ Innovation</span>
+      <span class="marquee-item">⚡ Design</span>
+      <span class="marquee-item">⚡ Performance</span>
+      <span class="marquee-item">⚡ AquaTech</span>
+      <span class="marquee-item">⚡ Innovation</span>
+      <span class="marquee-item">⚡ Design</span>
+    </div>
+  </div>
+
+  <script>
+    gsap.to("#marquee", {
+      x: "-100%",
+      duration: 20,
+      ease: "linear",
+      repeat: -1
+    });
+  </script>
+
+</body>
+</html>

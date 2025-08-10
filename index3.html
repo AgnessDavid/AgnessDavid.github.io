@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scroll Animation GSAP</title>
+  <title>Scroll Parallax GSAP</title>
 
   <!-- GSAP + Plugins -->
   <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
@@ -50,32 +50,62 @@
     .section:nth-child(even) {
       background: #333;
     }
+
+    .parallax-image {
+      position: relative;
+      height: 70vh;
+      overflow: hidden;
+      margin: 100px 0;
+    }
+
+    .parallax-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
 
   <div class="wrapper" id="smooth-wrapper">
     <div class="content" id="smooth-content">
+
       <div class="section">Section 1</div>
+
+      <div class="parallax-image" data-speed="0.6">
+        <img src="https://picsum.photos/id/1018/1200/800" alt="Image 1" />
+      </div>
+
       <div class="section">Section 2</div>
+
+      <div class="parallax-image" data-speed="0.4">
+        <img src="https://picsum.photos/id/1025/1200/800" alt="Image 2" />
+      </div>
+
       <div class="section">Section 3</div>
+
+      <div class="parallax-image" data-speed="0.5">
+        <img src="https://picsum.photos/id/1040/1200/800" alt="Image 3" />
+      </div>
+
       <div class="section">Section 4</div>
+
     </div>
   </div>
 
   <script>
-    // Enregistrement des plugins
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-    // Initialisation du scroll fluide
-    ScrollSmoother.create({
+    // Scroll fluide
+    const smoother = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
       smooth: 1.5,
       effects: true
     });
 
-    // Animation sur les sections
+    // Animation des sections
     gsap.utils.toArray(".section").forEach(section => {
       gsap.to(section, {
         opacity: 1,
@@ -87,6 +117,17 @@
           end: "bottom 60%",
           scrub: true
         }
+      });
+    });
+
+    // Effet parallax sur les images
+    gsap.utils.toArray(".parallax-image").forEach((imageWrapper) => {
+      const img = imageWrapper.querySelector("img");
+      const speed = imageWrapper.dataset.speed || 0.5;
+
+      smoother.effects(img, {
+        speed: speed,
+        lag: 0
       });
     });
   </script>

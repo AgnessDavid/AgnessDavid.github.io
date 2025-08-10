@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animation flottante et rotation GSAP</title>
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <style>
+    body {
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+    img {
+      width: 200px;
+      margin: 50px auto;
+      display: block;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    svg {
+      margin: 50px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Animation avec GSAP</h1>
+
+  <!-- Image flottante -->
+  <img src="https://picsum.photos/200" alt="Image flottante" id="floatingImage" />
+
+  <!-- SVG vecteur qui tourne -->
+  <svg width="100" height="100" viewBox="0 0 100 100" id="myVector" >
+    <circle cx="50" cy="50" r="40" stroke="blue" stroke-width="4" fill="lightblue"/>
+  </svg>
+
+  <script>
+    // Animation flottante pour l'image
+    gsap.to("#floatingImage", {
+      y: 20,            // déplace verticalement de 20px
+      duration: 5,      // en 2 secondes
+      repeat: -1,       // boucle infinie
+      yoyo: true,       // va et vient
+      ease: "sine.inOut"
+    });
+
+    // Rotation infinie du SVG
+    gsap.to("#myVector", {
+      rotation: 360,    // rotation complète
+      duration: 5,      // en 5 secondes
+      repeat: -1,       // boucle infinie
+      ease: "linear",   // vitesse constante
+      transformOrigin: "50% 50%" // centre de rotation au milieu du SVG
+    });
+  </script>
+
+</body>
+</html>
